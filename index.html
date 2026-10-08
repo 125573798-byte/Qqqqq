@@ -3336,7 +3336,7 @@ window.addEventListener('resize', () => { if (typeof updateCartFab === 'function
    二十四、启动与云同步
    ========================================================== */
 async function syncPull() {
-  if (!SYNC_API) return;
+  //if (!SYNC_API) return;
   try {
     const res = await fetch('/api/pull');  
     if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -3372,7 +3372,7 @@ async function syncPull() {
 }
 
 async function syncPush() {
-  if (!SYNC_API) return;
+  //if (!SYNC_API) return;
   try {
     const cutoff = Date.now() - 5 * 60 * 1000;
     const recent = arr => arr.filter(x => (x.updatedAt || 0) > cutoff);
@@ -3386,7 +3386,7 @@ async function syncPush() {
       settings:  S.settings
     };
     
-    const res = await fetch(SYNC_API + '/api/push', {
+    const res = await fetch('/api/push', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
